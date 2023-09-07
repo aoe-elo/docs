@@ -1,6 +1,19 @@
 [book]
 authors = ["AoE-Elo authors <info@aoe-elo.com>"]
+description = "Documentation for the frontend, backend and their design and implementation processes"
 language = "en"
 multilingual = false
 src = "src"
 title = "AoE-Elo Documentation"
+
+[output.html]
+curly-quotes = true
+default-theme = "ayu"
+site-url = "/docs/"
+git-repository-url = "https://github.com/aoe-elo/docs"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/aoe-elo/docs/edit/main/{path}"
+
+[output.html.fold]
+enable = true
+level = 2
