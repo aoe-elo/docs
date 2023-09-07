@@ -31,32 +31,10 @@ There are some places where data might be leaving the PHP side:
 
 Either directly in the `routes`:
 
-- [`/routes/api.php`](/routes/api.php)
-- [`/routes/web.php`](/routes/web.php)
+- [`/routes/api.php`](/routes/api.php) our public API for people to query data.
 
-Data is given to the frontend via the `Intertia::render` handler:
+- [`/routes/web.php`](/routes/web.php) our internal API for the frontend to
+  query data.
 
-```php
-Route::get('/', function () {
-    return Inertia::render('Home/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
-});
-```
-
-Which is handing it over to the frontend, which has exported variables within
-the script tag.
-
-```js
-<script>
-    import {Link, page} from '@inertiajs/svelte';
-
-    export let canLogin, canRegister;
-</script>;
-```
-
-Instead of calling `return Inertia::render` directly within the `route` we can
-also use that within each [`Controller`](/app/Http/Controllers/) and call that
-within the `route`. This is especially useful if there is more work to do in a
-`route`, so we keep it simple within the `/routes/`-files.
+Data is given to the frontend via the
+[`Web-Controllers`](/app/Http/Controllers/Web).
