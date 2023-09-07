@@ -1,5 +1,5 @@
 [book]
-authors = ["simonsan"]
+authors = ["AoE-Elo authors <info@aoe-elo.com>"]
 language = "en"
 multilingual = false
 src = "src"
