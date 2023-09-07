@@ -19,7 +19,7 @@
   - [Backend](./dev/backend/intro.md)
     - [Structure](./dev/backend/structure.md)
     - [API](./dev/backend/api.md)
-    - [External APIs](./dev/backend/external_apis.md)
+      - [External APIs](./dev/backend/apis_external.md)
     - [Database](./dev/backend/database.md)
       - [Database Mapping](./dev/backend/database_mapping.md)
     - [Testing](./dev/backend/testing.md)
