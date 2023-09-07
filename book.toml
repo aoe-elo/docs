@@ -1,0 +1,6 @@
+[book]
+authors = ["simonsan"]
+language = "en"
+multilingual = false
+src = "src"
+title = "AoE-Elo Documentation"
