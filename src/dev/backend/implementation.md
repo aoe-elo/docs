@@ -1,5 +1,21 @@
 # Implementation
 
+<!-- TOC -->
+
+- [Implementation](#implementation)
+  - [General](#general)
+  - [Best practices](#best-practices)
+    - [Performance](#performance)
+  - [Next steps](#next-steps)
+    - [Elo](#elo)
+    - [Authentication](#authentication)
+    - [Permissions](#permissions)
+    - [Architecture](#architecture)
+    - [Database](#database)
+      - [Models](#models)
+
+<!-- /TOC -->
+
 ## General
 
 - Routing: <https://laravel.com/docs/10.x/routing>
