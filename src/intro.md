@@ -5,5 +5,5 @@
 
 ## License
 
-The aoe-elo design documentation is open-source licensed under the
+The aoe-elo design documentation is open-source and licensed under the
 [GNU Free Documentation License v1.3 or later](./LICENSE).
