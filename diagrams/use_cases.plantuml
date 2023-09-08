@@ -1,0 +1,221 @@
+@startuml use_cases
+left to right direction
+title Use Case Diagram
+
+actor System as SYS
+actor ApiUser as AU
+actor User as U
+actor Guest as G
+actor Reviewer as RVW
+
+actor SuperAdmin as SU
+actor Admin as AD
+
+actor AutomaticDataAggregator as ADA
+
+actor Editor as ED
+actor TournamentOrganizer as TO
+actor Player as PL
+
+
+U <|-- SU
+U <|-- AD
+U <|-- TO
+U <|-- PL
+U <|-- AU
+
+RVW <|-- ADA
+RVW <|-- ED
+
+newpage
+left to right direction
+
+title Guest Points of Entry
+
+package Content {
+    (view home page) as UC1
+    (view player profile) as UC2
+    (view historical content) as UC3
+    (search for content) as UC4
+    (view item details) as UC5
+    (compare players) as UC6
+    (view tournaments) as UC7
+    (view tournament details) as UC8
+    (view tournament results) as UC9
+    (view teams) as UC10
+    (view team details) as UC11
+    (view team results) as UC12
+    (view team players) as UC13
+    (view sets) as UC14
+    (view set details) as UC15
+    (view set results) as UC16
+}
+
+Guest --> UC1
+Guest --> UC2
+Guest --> UC3
+Guest --> UC4
+Guest --> UC5
+Guest --> UC6
+Guest --> (Register user account)
+Guest --> UC7
+Guest --> UC8
+Guest --> UC9
+Guest --> UC10
+Guest --> UC11
+Guest --> UC12
+Guest --> UC13
+Guest --> UC14
+Guest --> UC15
+Guest --> UC16
+
+newpage
+left to right direction
+
+title Editor Dashboard
+
+actor Editor as ED
+
+(login to dashboard) as UC1
+
+rectangle Dashboard {
+    (review all content) as UC2
+    (manage reviews) as UC3
+    (manage content) as UC4
+}
+
+ED --> UC1
+ED --> UC2
+ED --> UC3
+ED --> UC4
+
+newpage
+left to right direction
+
+title Tournament Organizer Dashboard
+
+actor TournamentOrganizer as TO
+
+(login to dashboard) as UC1
+
+rectangle Dashboard {
+    (view player performance metrics) as UC2
+    (review own content) as UC3
+    (review all content) as UC4
+}
+
+TO --> UC1
+TO --> UC2
+TO --> UC3
+TO --> UC4
+
+newpage
+left to right direction
+actor Player as PL
+
+title Player Dashboard
+
+(login to dashboard) as UC1
+
+rectangle Dashboard {
+    (view player performance metrics) as UC2
+    (review own content) as UC3
+    (review all content) as UC4
+}
+
+PL --> UC1
+PL --> UC2
+PL --> UC3
+PL --> UC4
+
+newpage
+left to right direction
+
+title Administration Dashboard
+
+package Administration as ADM {
+    actor SuperAdmin as SU
+    actor Admin as AD
+}
+    
+(login to dashboard) as UC1
+
+rectangle Dashboard {
+    (manage roles) as UC2
+    (manage permissions) as UC3
+    (manage users) as UC4
+    (manage content) as UC5
+    (view API usage metrics) as UC6
+}
+
+ADM --> UC1
+ADM --> UC2
+ADM --> UC3
+ADM --> UC4
+ADM --> UC5
+ADM --> UC6
+
+newpage
+left to right direction
+
+title API 
+
+actor ApiUser as AU
+actor User as U
+
+rectangle Api {
+    (query API) as UC1
+    (view API documentation) as UC2
+}
+
+AU --> UC1
+AU --> UC2
+U --> UC2
+
+newpage
+left to right direction
+
+title AutomaticDataAggregator (ADA)
+
+actor DataCollectionService as DC
+actor DataProcessingService as DP
+actor DataAnalysisService as DA
+
+rectangle DataCollection {
+    (aggregate content) as UC1
+}
+
+rectangle DataProcessing {
+    (clean/transform content) as UC2
+    (store transformed content as review) as UC3
+}
+
+rectangle DataAnalysis {
+    (analyse content) as UC4
+    (store analysis) as UC5
+}
+
+DataProcessing --|> DataCollection
+
+DC --> UC1
+DP --> UC2
+DP --> UC3
+DA --> UC4
+DA --> UC5
+
+newpage
+left to right direction
+
+actor EloCalculationService as ECS
+
+rectangle Elo {
+    (calculate ratings) as UC1
+    (store ratings) as UC2
+    (store checkpoints) as UC3
+}
+
+ECS --> UC1
+ECS --> UC2
+ECS --> UC3
+
+@enduml
