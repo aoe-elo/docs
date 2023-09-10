@@ -7,11 +7,21 @@ database Database #SkyBlue
 boundary SocialLoginCallback #LightSalmon
 boundary SocialLogin #LightCoral
 
+
 User -> SvelteFrontend: Visit Login page
 SvelteFrontend -> User: Render Login page
-User -> LaravelBackend: Choose Social Login method
-LaravelBackend -> User: Redirect to Social Login page
-User -> SocialLogin: Login with Social Login
+
+group Get ProviderLogin
+User -> SvelteFrontend: Choose Social Login method
+SvelteFrontend -> SvelteBackend: Choose Social Login method
+SvelteBackend -> LaravelBackend: Choose Social Login method
+LaravelBackend -> SvelteBackend: Redirect to Social Login page
+SvelteBackend -> SvelteFrontend: Redirect to Social Login page
+SvelteFrontend -> User: Redirect to Social Login page
+end
+
+User -> SvelteBackend: Login with Social Login
+SvelteBackend -> SocialLogin: Login with Social Login
 SocialLogin -> SocialLoginCallback: Redirect to Social\nLogin Callback
 SocialLoginCallback -> LaravelBackend: Get Identity from\nSocial Login Callback
 
