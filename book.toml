@@ -16,4 +16,4 @@ edit-url-template = "https://github.com/aoe-elo/docs/edit/main/{path}"
 
 [output.html.fold]
 enable = true
-level = 2
+level = 1
