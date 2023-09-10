@@ -1,0 +1,30 @@
+@startuml Authentication Sequence Diagram
+actor User #OrangeRed
+participant SvelteFrontend #LightSlateGrey
+participant SvelteBackend #LightSteelBlue
+participant LaravelBackend #Teal
+database Database #SkyBlue
+boundary SocialLoginCallback #LightSalmon
+boundary SocialLogin #LightCoral
+
+User -> SvelteFrontend: Visit Login page
+SvelteFrontend -> User: Render Login page
+User -> LaravelBackend: Choose Social Login method
+LaravelBackend -> User: Redirect to Social Login page
+User -> SocialLogin: Login with Social Login
+SocialLogin -> SocialLoginCallback: Redirect to Social\nLogin Callback
+SocialLoginCallback -> LaravelBackend: Get Identity from\nSocial Login Callback
+
+LaravelBackend -> Database: Upsert SocialUser\nin Database and\nget UserId based on\nexisting social_id 
+alt UserId exists
+    Database -> LaravelBackend: UserId
+else UserId does not exist
+    LaravelBackend -> Database: Create new User\nwith socialUserDetails\nand get UserId
+    Database -> LaravelBackend: newUserId
+    LaravelBackend -> Database: Update SocialUser\nwith newUserId
+end
+LaravelBackend -> Database: Create new Session\nwith UserId and\nset SessionToken
+LaravelBackend -> SvelteBackend: Send SessionToken for UserId
+SvelteBackend -> SvelteFrontend: Set SessionToken
+SvelteFrontend -> User: Redirect to Dashboard
+@enduml
