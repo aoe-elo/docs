@@ -38,6 +38,7 @@
 
 - [ ] implement Elo calculation
 - [ ] implement `review` system and `ada` funtionality
+- [ ] create `drafts` table and implement `draft` functionality
 - [ ] implement API Endpoints for `Players`, `Teams`, `Sets`, `Tournaments`,
       `Search`, and `Leaderboads`
   - [ ] <https://laravel.com/docs/10.x/eloquent-resources>
