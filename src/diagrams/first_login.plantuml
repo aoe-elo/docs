@@ -3,8 +3,6 @@ start
 :Use Social Login;
 if (Social Login already exists) then (yes)
   if (Social Login has user_id) then (yes)
-    :Authenticate;
-    :Get user_id;
   else (no)
     :Create new User;
     :Get new user_id;
@@ -15,6 +13,7 @@ else (no)
   :Save user_id\nin SocialLogin;
   :Save callback\nrequest content;
 endif
+:Authenticate;
 :Return user_id\nand SessionToken;
 stop
 @enduml
