@@ -13,11 +13,11 @@ SvelteFrontend -> User: Render Login page
 
 group Get ProviderLogin
 User -> SvelteFrontend: Choose Social Login method
-SvelteFrontend -> SvelteBackend: Choose Social Login method
-SvelteBackend -> LaravelBackend: Choose Social Login method
+SvelteFrontend -> SvelteBackend: Forward Social Login method
+SvelteBackend -> LaravelBackend: Forward Social Login method
 LaravelBackend -> SvelteBackend: Redirect to Social Login page
-SvelteBackend -> SvelteFrontend: Redirect to Social Login page
-SvelteFrontend -> User: Redirect to Social Login page
+SvelteBackend -> SvelteFrontend: Forward redirect to\nSocial Login page
+SvelteFrontend -> User: Forward redirect to\nSocial Login page
 end
 
 User -> SvelteBackend: Login with Social Login
@@ -34,7 +34,8 @@ else UserId does not exist
     LaravelBackend -> Database: Update SocialUser\nwith newUserId
 end
 LaravelBackend -> Database: Create new Session\nwith UserId and\nset SessionToken
-LaravelBackend -> SvelteBackend: Send SessionToken for UserId
+LaravelBackend -> SvelteBackend: Send SessionToken\nand permission scopes\nfor UserId
+SvelteBackend -> SvelteBackend: Cache permission scopes for SessionToken
 SvelteBackend -> SvelteFrontend: Set SessionToken
 SvelteFrontend -> User: Redirect to Dashboard
 @enduml
