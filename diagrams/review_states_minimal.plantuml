@@ -1,0 +1,20 @@
+@startuml Minimal Review States
+' 'open', 'review', 'approved', 'rejected', 'merged'
+[*] --> open
+open --> review
+review --> approved
+review --> rejected
+approved --> merged
+
+merged --> [*] : delete
+rejected --> [*] : delete
+
+note left of rejected
+  A review can also be applied
+  to the current reviewer UI
+  and edited in place.
+  From there either a new review
+  can be created or it can be
+  merged directly with a comment.
+end note
+@enduml

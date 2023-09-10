@@ -1,0 +1,15 @@
+@startuml Review States
+' 'open', 'review', 'pending', 'approved', 'rejected', 'merged'
+[*] --> open
+open --> review
+review --> pending
+review --> approved
+review --> rejected
+pending --> review
+pending --> approved
+pending --> rejected
+approved --> merged
+
+merged --> [*] : delete
+rejected --> [*] : delete
+@enduml
