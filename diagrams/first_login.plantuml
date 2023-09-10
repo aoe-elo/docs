@@ -1,0 +1,20 @@
+@startuml SocialLogin Registration Flow
+start
+:Use Social Login;
+if (Social Login already exists) then (yes)
+  if (Social Login has user_id) then (yes)
+    :Authenticate;
+    :Get user_id;
+  else (no)
+    :Create new User;
+    :Get new user_id;
+    :Save user_id\nin SocialLogin;
+  endif
+else (no)
+  :Create new User;
+  :Save user_id\nin SocialLogin;
+  :Save callback\nrequest content;
+endif
+:Return user_id\nand SessionToken;
+stop
+@enduml

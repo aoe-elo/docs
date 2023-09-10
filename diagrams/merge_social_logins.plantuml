@@ -1,0 +1,31 @@
+@startuml Merge Accounts Flow
+start
+:Login with another SocialLogin;
+:**GeneralLoginProcedure()**;
+:User realizes that they\nused wrong SocialLogin;
+:User goes to Account Settings;
+note right
+  Need to be discussed in which account.
+  Either login to their main account again
+  or use the current account. Implications?
+end note
+:User clicks on "Connect Accounts";
+:User clicks on "Connect" button;
+:User clicks on corresponding SocialProvider;
+:User is redirected to SocialProvider;
+:User logs in to SocialProvider;
+:User is redirected back to\n"Connect Accounts" overview;
+:User is shown a message that\nthere is already an account\nconnected to that SocialLogin;
+:User is being asked, if they\nwant to merge their accounts;
+if (Merge Accounts?) then (yes)
+  :Lookup user_id of newly connected SocialAccount;
+  :Replace current SocialAccount's user_id with the new "old" one;
+  :Replace every occurence of the new user_id with the old one;
+  :Logout current User;
+  :SoftDelete current User;
+stop
+else (no)
+  :User is redirected to\n"Connect Accounts" overview;
+stop
+endif
+@enduml
